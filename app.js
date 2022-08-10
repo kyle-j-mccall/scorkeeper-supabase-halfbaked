@@ -14,21 +14,35 @@ const finishGameButton = document.getElementById('finish-game-button');
 const teamOneLabel = document.getElementById('team-one-name');
 const teamTwoLabel = document.getElementById('team-two-name');
 
-checkAuth();
+// checkAuth();
 
 let name1 = '';
 let name2 = '';
 let score1 = 0;
 let score2 = 0;
 
+let currentGame = {
+    teamOneName: '',
+    teamTwoName: '',
+    teamOneScore: 0,
+    teamTwoScore: 0
+};
+
 nameForm.addEventListener('submit', (e) => {
     // don't forget to prevent the default form behavior!
-
+    e.preventDefault();
     // get the name data from the form
-
+    const formData = new FormData(nameForm);
+    
+    const name1 = formData.get('team-one');
+    const name2 = formData.get('team-two');
     // set the state to this data from the form
+    currentGame.teamOneName = name1;
+    currentGame.teamTwoName = name2;
+    console.log(currentGame);
 
     // reset the form values
+    nameForm.reset();
 
     displayCurrentGameEl();
 });
@@ -77,7 +91,9 @@ window.addEventListener('', async () => {
 
 function displayCurrentGameEl() {
     // clear out the current game div
-    // change the label to show team one's name;
+
+    // change the label to show team one's name;s
+
     // change the label to show team two's name;
     // call the render game function to create a game element
     // append the element to the cleared out current game div
