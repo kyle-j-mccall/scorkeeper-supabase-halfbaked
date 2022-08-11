@@ -22,10 +22,10 @@ let score1 = 0;
 let score2 = 0;
 
 let currentGame = {
-    teamOneName: '',
-    teamTwoName: '',
-    teamOneScore: 0,
-    teamTwoScore: 0
+    name1: '',
+    name2: '',
+    score1: 0,
+    score2: 0
 };
 
 nameForm.addEventListener('submit', (e) => {
@@ -37,39 +37,44 @@ nameForm.addEventListener('submit', (e) => {
     const name1 = formData.get('team-one');
     const name2 = formData.get('team-two');
     // set the state to this data from the form
-    currentGame.teamOneName = name1;
-    currentGame.teamTwoName = name2;
+    currentGame.name1 = name1;
+    currentGame.name2 = name2;
     console.log(currentGame);
+    displayCurrentGameEl();
 
     // reset the form values
     nameForm.reset();
 
-    displayCurrentGameEl();
+    
 });
 
 teamOneAddButton.addEventListener('click', () => {
     // increment the current state for team one's score
     score1++;
-    console.log(score1);
+    currentGame.score1 = score1;
+    console.log(currentGame);
     displayCurrentGameEl();
 });
 
 teamTwoAddButton.addEventListener('click', () => {
     // increment the current state for team two's score
     score2++;
-    console.log(score2);
+    currentGame.score2 = score2;
+    console.log(currentGame);
     displayCurrentGameEl();
 });
 
 teamOneSubtractButton.addEventListener('click', () => {
     // decrement the current state for team one's score
     score1--;
+    currentGame.score1 = score1;
     displayCurrentGameEl();
 });
 
 teamTwoSubtractButton.addEventListener('click', () => {
     // decrement the current state for team two's score
     score2--;
+    currentGame.score2 = score2;
     displayCurrentGameEl();
 });
 
@@ -93,12 +98,16 @@ window.addEventListener('', async () => {
 
 function displayCurrentGameEl() {
     // clear out the current game div
-
+    currentGameEl.textContent = '';
     // change the label to show team one's name;s
-
+    teamOneLabel.textContent = currentGame.name1;
     // change the label to show team two's name;
+    teamTwoLabel.textContent = currentGame.name2;
     // call the render game function to create a game element
+    const renderedGame = renderGame(currentGame);
     // append the element to the cleared out current game div
+    currentGameEl.append(renderedGame);
+    
 }
 
 function displayAllGames() {
