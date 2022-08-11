@@ -53,7 +53,6 @@ teamOneAddButton.addEventListener('click', () => {
     // increment the current state for team one's score
     score1++;
     currentGame.score1 = score1;
-    console.log(currentGame);
     displayCurrentGameEl();
 });
 
