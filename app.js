@@ -16,12 +16,11 @@ const teamTwoLabel = document.getElementById('team-two-name');
 
 // checkAuth();
 
-let name1 = '';
-let name2 = '';
+
 let score1 = 0;
 let score2 = 0;
 
-let pastGames = [];
+
 
 let currentGame = {
     name1: '',
@@ -41,7 +40,7 @@ nameForm.addEventListener('submit', (e) => {
     // set the state to this data from the form
     currentGame.name1 = name1;
     currentGame.name2 = name2;
-    console.log(currentGame);
+    
     displayCurrentGameEl();
 
     // reset the form values
@@ -62,7 +61,6 @@ teamTwoAddButton.addEventListener('click', () => {
     // increment the current state for team two's score
     score2++;
     currentGame.score2 = score2;
-    console.log(currentGame);
     displayCurrentGameEl();
 });
 
@@ -86,16 +84,13 @@ finishGameButton.addEventListener('click', async () => {
 
     await createGame(currentGame);
 
-    pastGames.push(currentGame);
-
-    console.log(pastGames);
+    
 
     // after creating this new game, re-fetch the games to get the updated state and display them (hint: call displayAllGames())
 
     displayAllGames();
 
-    name1 = '';
-    name2 = '';
+    
     score1 = 0;
     score2 = 0;
 
